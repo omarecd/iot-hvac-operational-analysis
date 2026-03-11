@@ -1,7 +1,5 @@
 # IoT HVAC Operational Data Analysis
 
-⸻
-
 ## Project Overview
 
 This project demonstrates how IoT telemetry can be used to support real operational decisions.
@@ -11,8 +9,6 @@ Using temperature and occupancy data collected from IoT sensors deployed in an o
 Instead of building dashboards for demonstration purposes, the goal of this project was to analyze real telemetry and translate it into **actionable operational recommendations**.
 
 The analysis ultimately led to adjusting the HVAC shutdown schedule earlier in the evening.
-
-⸻
 
 ## Context
 
@@ -31,8 +27,6 @@ The office building already had IoT sensors installed, producing telemetry relat
 	•	electricity consumption
 
 The challenge was to interpret the data and determine whether a change in the HVAC schedule would be feasible.
-
-⸻
 
 ## Data Sources
 
@@ -54,8 +48,6 @@ As is common with real IoT deployments, the dataset was not perfectly clean:
 	•	timestamps required alignment
 
 Handling imperfect telemetry was part of the analysis.
-
-⸻
 
 ## Operational Changes Tested
 
@@ -82,8 +74,6 @@ This adjustment was later confirmed and applied by the building management team.
 
 These configuration changes allowed the dataset to be segmented and compared.
 
-⸻
-
 ## Analysis Approach
 
 The analysis focused on time-series patterns in indoor temperature.
@@ -103,8 +93,6 @@ Even after heating stops, indoor temperature decreases slowly due to:
 
 Understanding this behavior is essential when optimizing heating schedules.
 
-⸻
-
 ## Key Observations
 
 The data revealed several important patterns.
@@ -121,8 +109,6 @@ This indicated that the heating system had been running longer than necessary.
 
 Later, the shutdown time was further adjusted to 16:00, continuing the optimization process.
 
-⸻
-
 ## Outcome
 
 Based on the analysis, the HVAC shutdown schedule was successfully adjusted.
@@ -136,8 +122,6 @@ This adjustment reduces heating runtime while maintaining indoor comfort levels.
 Although the exact energy savings were not calculated (as heating costs are handled externally by the building management company), reducing runtime logically leads to lower energy consumption.
 
 More importantly, this project demonstrates how IoT telemetry can support data-driven operational decisions.
-
-⸻
 
 ## Architecture Overview
 
@@ -159,8 +143,6 @@ Event House in Microsoft Fabric (KQL / Time-Series Analysis)
 ↓
 Operational Recommendation
 
-⸻
-
 ## Lessons Learned
 
 Several practical lessons emerged from this project.
@@ -177,8 +159,6 @@ When analyzing operational changes, clearly separating the dataset into phases i
 IoT value comes from decisions, not dashboards.
 Dashboards can visualize data, but operational improvements occur only when the data leads to action.
 
-⸻
-
 ## Key Takeaway
 
 Many IoT deployments successfully collect data but fail to convert it into meaningful operational improvements.
@@ -187,8 +167,6 @@ This project illustrates the role of an engineer who sits between devices, data 
 
 In this case, telemetry analysis helped identify an opportunity to reduce heating runtime while maintaining comfort.
 
-⸻
-
 ## Technologies Used
 	•	IoT sensors (temperature, occupancy, CO2)
 	•	Cloud ingestion pipeline
@@ -196,9 +174,8 @@ In this case, telemetry analysis helped identify an opportunity to reduce heatin
 	•	KQL (Kusto Query Language)
 	•	Time-series data analysis
 
-⸻
 
-Author
+## Author
 
 Omar Cruz
 Industrial IoT & Data-focused Engineer
