@@ -12,20 +12,15 @@ The analysis ultimately led to adjusting the HVAC shutdown schedule earlier in t
 
 ## Context
 
-Many organizations deploy IoT devices but struggle to convert the collected measurements into operational decisions.
+Many organizations deploy IoT devices but struggle to convert the collected measurements into operational decisions. This project focuses on that gap. The goal was to answer a simple operational question:
 
-This project focuses on that gap.
-
-The goal was to answer a simple operational question:
-
-Can the heating system be switched off earlier without negatively affecting indoor temperature?
+Can the usage of the heating system be optimised without negatively affecting indoor temperature?
 
 The office building already had IoT sensors installed, producing telemetry related to:
 	•	indoor temperature
 	•	office occupancy
-	•	CO2 levels
-	•	electricity consumption
-
+	•	and others...
+	
 The challenge was to interpret the data and determine whether a change in the HVAC schedule would be feasible.
 
 ## Data Sources
@@ -54,22 +49,18 @@ Handling imperfect telemetry was part of the analysis.
 Two operational changes were implemented during the data collection period.
 
 Originally the heating system was configured to stop at:
-
 18:00
 
 After reviewing the temperature trends, the following adjustments were requested.
-
 Phase 1 — Original configuration
 Heating shutdown: 18:00
 
 Phase 2 — First adjustment
 Heating shutdown moved to: 17:00
-
 This change was implemented and clearly visible in the telemetry.
 
 Phase 3 — Second adjustment
 Heating shutdown moved to: 16:00
-
 This adjustment was later confirmed and applied by the building management team.
 
 These configuration changes allowed the dataset to be segmented and compared.
@@ -95,19 +86,9 @@ Understanding this behavior is essential when optimizing heating schedules.
 
 ## Key Observations
 
-The data revealed several important patterns.
+The data revealed several important patterns: Indoor temperature did not drop immediately when heating stopped. Instead, the temperature remained within a comfortable range for a significant period after shutdown. This confirmed that the building retains heat effectively.
 
-Indoor temperature did not drop immediately when heating stopped.
-
-Instead, the temperature remained within a comfortable range for a significant period after shutdown.
-
-This confirmed that the building retains heat effectively.
-
-When the shutdown time moved from 18:00 to 17:00, the temperature behavior remained acceptable.
-
-This indicated that the heating system had been running longer than necessary.
-
-Later, the shutdown time was further adjusted to 16:00, continuing the optimization process.
+When the shutdown time moved from 18:00 to 17:00, the temperature behavior remained acceptable. This indicated that the heating system had been running longer than necessary. Later, the shutdown time was further adjusted to 16:00, continuing the optimization process.
 
 ## Outcome
 
@@ -117,9 +98,7 @@ Heating shutdown moved from:
 
 18:00 → 17:00 → 16:00
 
-This adjustment reduces heating runtime while maintaining indoor comfort levels.
-
-Although the exact energy savings were not calculated (as heating costs are handled externally by the building management company), reducing runtime logically leads to lower energy consumption.
+This adjustment reduces heating runtime while maintaining indoor comfort levels. The exact energy savings were not calculated (as heating costs are handled externally by the building management company).
 
 More importantly, this project demonstrates how IoT telemetry can support data-driven operational decisions.
 
@@ -147,33 +126,35 @@ Operational Recommendation
 
 Several practical lessons emerged from this project.
 
-IoT data is rarely clean from the beginning.
+- IoT data is rarely clean from the beginning.
 Sensors may start reporting at different times and datasets often require validation.
 
-Operational changes must be verified.
+- Operational changes must be verified.
 Configuration changes in building systems should be confirmed with telemetry rather than assumed.
 
-Time-series segmentation is critical.
+- Time-series segmentation is critical.
 When analyzing operational changes, clearly separating the dataset into phases is essential.
 
-IoT value comes from decisions, not dashboards.
+- **_IoT value comes from decisions, not dashboards_**.
 Dashboards can visualize data, but operational improvements occur only when the data leads to action.
 
 ## Key Takeaway
 
-Many IoT deployments successfully collect data but fail to convert it into meaningful operational improvements.
+- Many IoT deployments successfully collect data but fail to convert it into meaningful operational improvements.
 
-This project illustrates the role of an engineer who sits between devices, data platforms, and operations, ensuring that measurements lead to decisions people actually take.
+- This project illustrates the role of an engineer who sits between devices, data platforms, and operations, ensuring that measurements lead to decisions people actually take.
 
-In this case, telemetry analysis helped identify an opportunity to reduce heating runtime while maintaining comfort.
+- In this case, telemetry analysis helped identify an opportunity to reduce heating runtime while maintaining comfort.
 
 ## Technologies Used
-	•	IoT sensors (temperature, occupancy, CO2)
+	•	IoT sensors
+	•	IoT Gateways (For this case LoRa)
+	•	LoRaWAN Netxork Server
+	•	IoT Platform, on this case ALSO IoT
 	•	Cloud ingestion pipeline
 	•	Microsoft Fabric Eventhouse
 	•	KQL (Kusto Query Language)
 	•	Time-series data analysis
-
 
 ## Author
 
