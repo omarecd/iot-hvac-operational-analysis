@@ -6,7 +6,7 @@ This project demonstrates how IoT telemetry can be used to support real operatio
 
 Using temperature and occupancy data collected from IoT sensors deployed in an office environment, the objective was to determine whether the HVAC heating schedule could be adjusted to reduce energy usage without affecting comfort.
 
-Instead of building dashboards for demonstration purposes, the goal of this project was to analyze real telemetry and translate it into **actionable operational recommendations**.
+Instead of building dashboards for demonstration purposes, the goal of this project was to analyze real telemetry and translate it into **_actionable operational recommendations_**.
 
 The analysis ultimately led to adjusting the HVAC shutdown schedule earlier in the evening.
 
