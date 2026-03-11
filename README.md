@@ -1,9 +1,8 @@
 # IoT HVAC Operational Data Analysis
 
+⸻
 
-
-
-Project Overview
+## Project Overview
 
 This project demonstrates how IoT telemetry can be used to support real operational decisions.
 
@@ -15,7 +14,7 @@ The analysis ultimately led to adjusting the HVAC shutdown schedule earlier in t
 
 ⸻
 
-Context
+## Context
 
 Many organizations deploy IoT devices but struggle to convert the collected measurements into operational decisions.
 
@@ -35,14 +34,13 @@ The challenge was to interpret the data and determine whether a change in the HV
 
 ⸻
 
-Data Sources
+## Data Sources
 
 The analysis used telemetry collected from sensors installed in the office.
 
 Sensors included:
 	•	temperature sensors deployed in multiple locations
 	•	occupancy monitoring (people count in the office)
-	•	CO2 sensors in selected rooms
 
 Telemetry was ingested into a cloud data platform and stored in a time-series event database in Microsoft Fabric Eventhouse.
 
@@ -59,7 +57,7 @@ Handling imperfect telemetry was part of the analysis.
 
 ⸻
 
-Operational Changes Tested
+## Operational Changes Tested
 
 Two operational changes were implemented during the data collection period.
 
@@ -86,7 +84,7 @@ These configuration changes allowed the dataset to be segmented and compared.
 
 ⸻
 
-Analysis Approach
+## Analysis Approach
 
 The analysis focused on time-series patterns in indoor temperature.
 
@@ -107,7 +105,7 @@ Understanding this behavior is essential when optimizing heating schedules.
 
 ⸻
 
-Key Observations
+## Key Observations
 
 The data revealed several important patterns.
 
@@ -125,7 +123,7 @@ Later, the shutdown time was further adjusted to 16:00, continuing the optimizat
 
 ⸻
 
-Outcome
+## Outcome
 
 Based on the analysis, the HVAC shutdown schedule was successfully adjusted.
 
@@ -141,23 +139,29 @@ More importantly, this project demonstrates how IoT telemetry can support data-d
 
 ⸻
 
-Architecture Overview
+## Architecture Overview
 
-IoT Sensors (Temperature, Occupancy, CO2)
+IoT Sensors (Temperature, Occupancy)
 ↓
-IoT Platform / Device Connectivity
+LoRaWAN Gateway
 ↓
-Event Ingestion Pipeline
+LoRaWAN Network Server
 ↓
-Microsoft Fabric Eventhouse (time-series storage)
+IoT Platform / ALSO IoT Platform
 ↓
-KQL / Time-Series Analysis
+Using a MQTT Connector, data is sent to Event Grid in Microsoft Azure
+↓
+Event Hub in Microsoft Azure
+↓
+Event Stream in Microsoft Fabric
+↓
+Event House in Microsoft Fabric (KQL / Time-Series Analysis)
 ↓
 Operational Recommendation
 
 ⸻
 
-Lessons Learned
+## Lessons Learned
 
 Several practical lessons emerged from this project.
 
@@ -175,7 +179,7 @@ Dashboards can visualize data, but operational improvements occur only when the 
 
 ⸻
 
-Key Takeaway
+## Key Takeaway
 
 Many IoT deployments successfully collect data but fail to convert it into meaningful operational improvements.
 
@@ -185,7 +189,7 @@ In this case, telemetry analysis helped identify an opportunity to reduce heatin
 
 ⸻
 
-Technologies Used
+## Technologies Used
 	•	IoT sensors (temperature, occupancy, CO2)
 	•	Cloud ingestion pipeline
 	•	Microsoft Fabric Eventhouse
