@@ -157,13 +157,18 @@ Dashboards can visualize data, but operational improvements occur only when the 
 	•	Time-series data analysis
 
 
-## Annexes
 
+## Data Visualizations
+
+### 1. Occupancy Trend
 ![Occupancy trend](images/occupancy.png)
 
+### 2. Occupancy per Time of the Day
 ![Occupancy per time of the day](images/occupancy-per-time-of-the-day.png)
 
+### 3. Temperature Evolution
 ![temperatures](images/temperatures.png)
+
 
 ## Author
 
