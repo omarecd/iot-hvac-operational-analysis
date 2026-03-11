@@ -158,8 +158,14 @@ Dashboards can visualize data, but operational improvements occur only when the 
 
 
 ## Annexes
+![Occupancy trend](images/occupancy-per-time-of-the-day.png)
+
 
 ### Temperature Trend
+
+
+
+
 
 ![Temperature trend](images/temperature_trend.png)
 
