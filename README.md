@@ -156,6 +156,18 @@ Dashboards can visualize data, but operational improvements occur only when the 
 	•	KQL (Kusto Query Language)
 	•	Time-series data analysis
 
+
+## Annexes
+
+### Temperature Trend
+
+![Temperature trend](images/temperature_trend.png)
+
+### Architecture
+
+![Architecture](images/architecture.png)
+
+
 ## Author
 
 Omar Cruz
