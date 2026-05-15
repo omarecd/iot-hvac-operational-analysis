@@ -1,0 +1,30 @@
+////////////////////////////////////////////////////////////////
+// Average of the temperature in ALL sensors
+////////////////////////////////////////////////////////////////
+// This is the average of all the sensors, to take as guideline only
+////////////////////////////////////////////////////////////////
+['also-iot-connectors-kql-table-all-rawdata-input']
+| where subject startswith "ZSwOlp4RGaojsxQrGjrZlqgM" //////// Filtering only for this MECHELEN ground
+| extend parts = split(subject, "/")
+| extend
+    ground_id    = tostring(parts[0]),
+    ground_name  = tostring(parts[1]),
+    ground_title  = tostring(parts[2]),
+    device_id = tostring(parts[3]),
+    device_name = tostring(parts[4]),
+    device_title = tostring(parts[5]),
+    device_type_manufacturer = tostring(parts[6]),
+    device_type_model = tostring(parts[7]),
+    asset_id = tostring(parts[8]),
+    asset_name = tostring(parts[9]),
+    asset_title = tostring(parts[10])
+| extend decoded = parse_json(base64_decode_tostring(data_base64))
+| extend at = todatetime(decoded.timestamp),
+         value = todouble(decoded.value)
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+| where ground_id == "ZSwOlp4RGaojsxQrGjrZlqgM" and asset_name == "temperature" and isnotnull(at) and isfinite(value)
+| where at > ago(15d)
+| project at, device_name, value
+| summarize value = avg(value) by bin(at, 15m)
+| order by at asc
+| render timechart
