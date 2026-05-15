@@ -28,3 +28,53 @@
 | summarize value = avg(value) by bin(at, 15m)
 | order by at asc
 | render timechart
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////
+// Average temperature profile by time of day
+////////////////////////////////////////////////////////////////
+['also-iot-connectors-kql-table-all-rawdata-input']
+| where subject startswith "ZSwOlp4RGaojsxQrGjrZlqgM"
+| extend parts = split(subject, "/")
+| extend
+    ground_id    = tostring(parts[0]),
+    ground_name  = tostring(parts[1]),
+    ground_title = tostring(parts[2]),
+    device_id    = tostring(parts[3]),
+    device_name  = tostring(parts[4]),
+    device_title = tostring(parts[5]),
+    device_type_manufacturer = tostring(parts[6]),
+    device_type_model = tostring(parts[7]),
+    asset_id     = tostring(parts[8]),
+    asset_name   = tostring(parts[9]),
+    asset_title  = tostring(parts[10])
+| extend decoded = parse_json(base64_decode_tostring(data_base64))
+| extend at = todatetime(decoded.timestamp),
+         value = todouble(decoded.value)
+//////////////////////////////////////////////////////////////////////
+| extend at_be = datetime_utc_to_local(at, "Europe/Brussels")
+| extend Period =
+    case(
+        at_be between (datetime(2026-01-22) .. datetime(2026-01-28)), "Initial configuration",
+        at_be between (datetime(2026-01-29) .. datetime(2026-02-04)), "Optimised configuration",
+        "ignore"
+    )
+| where Period != "ignore"
+| extend dow = dayofweek(at_be)
+| extend daytype = iif(dow between (time(1d) .. time(5d)), "workday", "weekend")
+| where asset_name == "temperature"
+| where daytype == "workday"
+| where isfinite(value) and isnotnull(at_be)
+// Create a temporary fixed date, keeping only the Belgian time-of-day
+| extend tod_anchor = datetime(2000-01-01)
+                    + datetime_part("hour", at_be) * 1h
+                    + datetime_part("minute", at_be) * 1m
+| where tod_anchor between (datetime(2000-01-01 15:00:00) .. datetime(2000-01-01 21:00:00))
+| summarize avg_temp = avg(value) by Period, bin(tod_anchor, 15m)
+| order by tod_anchor asc
+| render linechart
